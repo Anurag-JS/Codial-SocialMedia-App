@@ -8,6 +8,9 @@ module.exports.profile = function (req, res){
 
 // Rendering the sign in page
 module.exports.signin = function (req, res){
+    if(req.isAuthenticated()){
+        return res.redirect('/users/profile')
+    }
     return res.render('user_signin', {
         title : 'Sign in'
     });
@@ -15,16 +18,14 @@ module.exports.signin = function (req, res){
 
 // Rendering the sign in page
 module.exports.login = function (req, res){
+    if(req.isAuthenticated()){
+        return res.redirect('/users/profile')
+    }
     return res.render('user_login', {
         title : 'Login'
     });
 };
 
-
-
-   
-
-    
 
 module.exports.create = async (req, res) => {
 
@@ -48,27 +49,12 @@ module.exports.create = async (req, res) => {
 
 
 
-  
-//     user.findOne({email: req.body.email}, function(err, user){
-//         if(err){
-//             console.log('Error in finding user on SignUp');
-//             return ;
-//         }
-//         if(!user){
-//             user.create(req.body, function(err, user){
-//                 if(err){
-//                     console.log('Error in Creating user on SignUp');
-//                     return;
-//                 }
-//                 return res.redirect('/users/log-in')
-//             });
-//         }else{
-//             return res.redirect('back');
-//         }
-//     });
+module.exports.createSession = function(req, res){
+    return res.redirect('/');
+}
 
 
-
-//module.exports.createSession = function(res, req){
-    //
-//}
+module.exports.destroySession = function(req,res){
+    req.logout();
+    return res.redirect('/');
+}

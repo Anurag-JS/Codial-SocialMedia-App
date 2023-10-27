@@ -13,7 +13,5 @@ router.use('/posts', require('./posts'));
 
 
 
-
-
 // Exporting router so we can use it outside this file
 module.exports= router;
