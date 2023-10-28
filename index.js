@@ -7,13 +7,13 @@ const db = require('./config/mongoose');
 const session = require('express-session');
 const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
-const MongoStore = require('connect-mongo')(session);
+const MongoStore = require('connect-mongo');
 const sassMiddleware = require('node-sass-middleware');
 
 //setting sassMiddleware
 app.use(sassMiddleware({
-    src: '/assets/sass',
-    dest: '/assets/css',
+    src: './assets/sass',
+    dest: './assets/css',
     prefix: '/css',
     debug: true,
     outputStyle: 'extended'
@@ -42,22 +42,24 @@ app.set('view engine', 'ejs');
 app.set('views', './views');
 
 // setting up the express-session middleware
-app.use(session({
-    name: 'codial',
-    secret: 'blahsomething',
-    saveUninitialized: false,
-    resave: false,
-    cookie: {
-        maxAge: (1000*60*100)
+app.use(
+    session({
+      name: 'codial',
+      secret: 'blahsomething',
+      saveUninitialized: false,
+      resave: false,
+      cookie: {
+        maxAge: 1000 * 60 * 100,
+      },
+      store: MongoStore.create({
+        mongoUrl: 'mongodb://127.0.0.1/codial_development', 
+      }),
     },
-    store : new MongoStore({
-        mongooseConnection : db,
-        autoRemove : 'disabled'
-    },
-    function (err){
-        console.log(err || 'mongodb setup connected');
-    })
-}));
+    function (err) {
+      console.log(err || 'mongodb setup connected');
+    }
+  ));
+  
 
 //setting up the passport
 app.use(passport.initialize());
