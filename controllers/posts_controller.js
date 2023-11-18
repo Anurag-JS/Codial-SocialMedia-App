@@ -2,7 +2,7 @@ const Post = require('../models/post');
 
 module.exports.create = async function(req, res){
     try{
-        Post.create({
+        await Post.create({
             content : req.body.content,
             user : req.user._id
         })
