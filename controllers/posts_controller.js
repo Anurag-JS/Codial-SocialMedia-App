@@ -8,6 +8,6 @@ module.exports.create = async function(req, res){
         })
         return res.redirect('back');
     } catch(err){
-        console.log("Error in creating Pots",err);
+        console.log("Error in creating Posts",err);
     }  
 }

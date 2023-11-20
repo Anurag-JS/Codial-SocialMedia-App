@@ -16,6 +16,16 @@
                     <li><%= post.content %></li>
                 <small><%= post.user.name %></small>
                 </p>
+                <div class = "post-comments"> 
+                    <% if(locals.user){ %>
+                        <form action="/comments/create" method="POST">
+                            <input type="text" name="content" placeholder="Add Comments">
+                            <!-- sending post id of comments by Preplaced value -->
+                            <input type="hidden" name="post" value="<%= post._id %>">
+                            <input type="submit" value="Post Comment">
+                        </form>
+                    <% } %> 
+                </div>
             <% } %>
         </ul>
     </div>
