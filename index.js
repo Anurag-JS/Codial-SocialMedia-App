@@ -52,7 +52,7 @@ app.use(
         maxAge: 1000 * 60 * 100,
       },
       store: MongoStore.create({
-        mongoUrl: 'mongodb://127.0.0.1/codial_development', 
+        mongoUrl: 'mongodb+srv://anuragv8269:Tqsg8dnRstsn6MzR@cluster0.gvbrybd.mongodb.net/codial_development', 
       }),
     },
     function (err) {

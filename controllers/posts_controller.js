@@ -15,19 +15,21 @@ module.exports.create = async function(req, res){
 
 module.exports.destroy = async function (req, res){
     try{
-        const newPost= await Post.findById(req.params.id);
+        //.trim() to remove spaces between them
+        const newPost= await Post.findById(req.params.id.trim());
         // .id means converting the object id into strings in req.user.id below.
-        if(newPost.user == req.user.id){
+        if(newPost.user.toString()== req.user.id){
             // inbuilt function to remove post
-            newPost.remove();
+            //await newPost.remove();
+            await Post.findByIdAndDelete(newPost._id)
 
             //also deleting the comments of the post
-            try{
-                await Comment.deleteMany({post : req.params.id});
-            }catch(err){
-                return res.redirect('back');
-            }
+            
+            await Comment.deleteMany({post : newPost._id});
+            return res.redirect('back');
+           
         }else{
+           // console.log(newPost.user,req.user.id)
             return res.redirect('back');
         }
     }catch(err){
