@@ -1,10 +1,29 @@
 const User = require('../models/user');
 
-module.exports.profile = function (req, res){
-    return res.render('user_profile', {
-        title : 'haka'
-    })
+module.exports.profile = async function (req, res){
+    try{
+        let newUser = await User.findById(req.params.id.trim());
+        return res.render('user_profile', {
+        title : 'User Profile',
+        profile_user : newUser
+        });
+    } catch(err){
+        console.log('Error in finding User profile',err);
+    }
 };
+
+module.exports.update = async function(req, res){
+    try{
+        if(req.user.id == req.params.id){
+            await  User.findByIdAndUpdate(req.params.id, req.body);
+            return res.redirect('back');
+        }else{
+            return res.status(401).send('Unauthorized')
+        }
+    }catch(err){
+        console.log('Error in updating user',err);
+    }
+}
 
 // Rendering the sign in page
 module.exports.signin = function (req, res){
