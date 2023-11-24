@@ -12,7 +12,7 @@ const sassMiddleware = require('node-sass-middleware');
 
 //setting sassMiddleware
 app.use(sassMiddleware({
-    src: './assets/sass',
+    src: './assets/scss',
     dest: './assets/css',
     prefix: '/css',
     debug: true,
@@ -33,9 +33,6 @@ app.use(expressLayouts);
 // Extracting styles and scripts from sub pages into the layout
 app.set('layout extractStyles', true);
 app.set('layout extractScripts', true);
-
-
-
 
 // setting up view engine
 app.set('view engine', 'ejs');
