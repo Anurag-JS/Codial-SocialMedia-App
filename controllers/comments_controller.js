@@ -7,7 +7,6 @@ module.exports.create = async function (req, res){
         // req.body.post means the name="post" in comments form in home.ejs
         let newPost = await Post.findById(req.body.post);
         if(newPost){
-            try{
                 const newComment = await Comment.create({
                     content : req.body.content,
                     post : req.body.post,
@@ -17,12 +16,8 @@ module.exports.create = async function (req, res){
                 //pushing the newComment into the comments array of the newPost that was retrieved with Post.findById(req.body.post).
                 newPost.comments.push(newComment);
                 await newPost.save();
-
+                req.flash('success', 'Comment Posted');
                 res.redirect('/');
-
-            } catch(error){
-                console.log('Error in Creating comments',error)
-            }
         }
     } catch(err){
         console.log('Error in finding Post', err)
@@ -40,9 +35,10 @@ module.exports.destroy = async function (req, res){
             await Comment.findByIdAndDelete(newComment._id);
             //deleting the comment id from post array
             await Post.findByIdAndUpdate(postId,{ $pull :{comments : req.params.id}});
-
+            req.flash('error', 'Comment deleted');
             return res.redirect('back');
         }else{
+            req.flash('error', 'You Cannot Delete this Comment');
             return res.redirect('back');
         }
     }catch(err){
