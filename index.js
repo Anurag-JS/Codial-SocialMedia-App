@@ -9,6 +9,8 @@ const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
 const MongoStore = require('connect-mongo');
 const sassMiddleware = require('node-sass-middleware');
+const flash = require('connect-flash');
+const customMiddleware = require('./config/middleware')
 
 //setting sassMiddleware
 app.use(sassMiddleware({
@@ -63,6 +65,12 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.setAuthenticatedUser);
 
+//setting flash 
+app.use(flash());
+app.use(customMiddleware.setFlash);
+
+
+
 // Using express router
 app.use('/', require('./routes/index'));
 
@@ -71,6 +79,5 @@ app.listen( port, function(err){
     if(err){
         console.log(`Error in connecting to server: ${err}`);
     }
-
     console.log(`Server is up and running on port ${port}`);
 })
