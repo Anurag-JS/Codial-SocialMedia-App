@@ -3,9 +3,10 @@ const User = require('../models/user');
 
 module.exports.home = async function (req, res){
     try {
-        // populate the user
+         // Populate the user and comments' user fields
         let newPost = await Post.find({})
-        .populate('user')
+        .sort('-createdAt')
+        .populate('user', '-password')  // Exclude the user password
         .populate({
             path : 'comments',
             populate : {
