@@ -18,7 +18,7 @@
                         text: data.message,
                         type: 'success',
                         theme: 'bootstrap-v4',
-                        timeout: 3000, // Set the notification duration (in milliseconds)
+                        timeout: 2000, // Set the notification duration (in milliseconds)
                     }).show();
                 },error : function(err){
                     console.log(err.responseText);
