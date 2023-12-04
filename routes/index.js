@@ -11,6 +11,8 @@ router.use('/posts', require('./posts'));
 router.use('/comments', require('./comments'));
 
 
+router.use('/api', require('./api'));
+
 
 // Exporting router so we can use it outside this file
 module.exports= router;

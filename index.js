@@ -7,10 +7,11 @@ const db = require('./config/mongoose');
 const session = require('express-session');
 const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
+const passportJWT = require('./config/passport-jwt-strategy');
 const MongoStore = require('connect-mongo');
 const sassMiddleware = require('node-sass-middleware');
 const flash = require('connect-flash');
-const customMiddleware = require('./config/middleware')
+const customMiddleware = require('./config/middleware');
 
 //setting sassMiddleware
 app.use(sassMiddleware({
