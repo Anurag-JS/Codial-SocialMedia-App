@@ -8,7 +8,7 @@ let opts = {
     secretOrKey : 'codial'
 }
 
-passport.use(new JWTStrategy(opts,async function(jwtPayload, done){
+passport.use(new JWTStrategy( opts, async function(jwtPayload, done){
     // Find user and establish the identity
     try {
         const newUser = await User.findById(jwtPayload._id);
