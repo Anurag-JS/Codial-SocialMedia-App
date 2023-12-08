@@ -5,6 +5,7 @@ const nodemailer = require('../config/nodemailer');
 
 exports.newComment = async (comment) => {
     try{
+        let htmlString = nodemailer.renderTemplate({comment:comment}, '/comments/new_comment.ejs');
         console.log('Inside newComment mailer');
         // send mail with defined transport object
         const info = await nodemailer.transporter.sendMail({
@@ -12,7 +13,7 @@ exports.newComment = async (comment) => {
             to: comment.user.email, // list of receivers
             subject: "New Comment Published", // Subject line
             text: "Hello world?", // plain text body
-            html: "<h1>yay! your comment is now published</h1>", // html body
+            html: htmlString, // html body
         })
         console.log('Message sent',info);
         
