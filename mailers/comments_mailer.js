@@ -15,7 +15,8 @@ exports.newComment = async (comment) => {
             text: "Hello world?", // plain text body
             html: htmlString, // html body
         })
-        console.log('Message sent',info);
+        console.log('Message sent');
+        //console.log('Message sent',info);
         
 
     }catch(err){
