@@ -27,13 +27,10 @@ class ToggleLike{
 
                 $(self).attr('data-likes', likesCount);
                 $(self).html(`${likesCount} Likes`);
-
             })
             .fail(function(errData) {
                 console.log('error in completing the request');
             });
-            
-
         });
     }
 }

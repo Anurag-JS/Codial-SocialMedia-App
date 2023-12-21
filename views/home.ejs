@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="/css/home.css">
 
 <div id="home-container"> 
-    <section id="feed-posts">
+    <div id="feed-posts">
         <h4>Posts</h4>
         <% if(locals.user){ %>
         <form action="/posts/create" method="POST" id="new-post-form">
@@ -17,16 +17,19 @@
                 <% } %>
             </ul>
         </div>
-    </section>
+    </div>
     
-    <section id="user-friends">
-        <h4>Friends</h4>
+    <div id="user-friends">
+        <h4>USERS</h4>
         <% for(u of all_users){ %>
             <p>
                 <a href="/users/profile/<%= u.id %>"><%= u.name %></a>
             </p>
         <% } %> 
-    </section>
+        </div>
+
+        <%-include('_chat_box')-%>
+        
 </div>
 <script src="/js/home_comments.js"></script>
 <script src="/js/home_posts.js"></script>

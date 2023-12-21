@@ -1,10 +1,14 @@
 #home-container {
-  display: flex; }
+  background-color: #e5ffbb;
+  display: flex;
+  /* Use flexbox for layout */
+  justify-content: space-between;
+  /* Space between the two child elements */ }
   #home-container #feed-posts {
-    width: 75%;
+    width: 70%;
     padding: 10px; }
   #home-container #user-friends {
-    width: 25%;
-    border-left: 2px solid black;
+    width: 30%;
+    border: 2px solid black;
     padding: 10px;
-    height: 100vh; }
+    height: 55%; }

@@ -20,7 +20,7 @@ module.exports.create = async function (req, res){
                 //pushing the newComment into the comments array of the newPost that was retrieved with Post.findById(req.body.post).
                 newPost.comments.push(newComment);
                 await newPost.save();
-                
+
                 newComment = await Comment.findById(newComment._id).populate('user', 'name email').exec();
                 //commentsMailer.newComment(newComment);
                 let job = queue.create('emails', newComment)

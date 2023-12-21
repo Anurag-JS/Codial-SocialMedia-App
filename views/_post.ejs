@@ -1,15 +1,16 @@
 <link rel="stylesheet" href="/css/_post.css">
+<script src="https://kit.fontawesome.com/3098645223.js" crossorigin="anonymous"></script>
 
 
-    <div id="post-<%= post._id %>">
+    <div id="post-<%= post._id %>" class="post-box">
         <p>
             <% if(locals.user && locals.user.id == post.user.id) {%>
                   <small>
-                      <a class="delete-post-button" href="/posts/destroy/<%= post._id %>">X</a>
+                      <a class="delete-post-button" href="/posts/destroy/<%= post._id %>"><i class="fa-solid fa-trash"></i></a>
                   </small> 
             <% } %>
-            <li><%= post.content %></li>
-            <small><%= post.user.name %></small>
+            <li class="post-content"><%= post.content %></li>
+            <small class="username"><%= post.user.name %></small>
 
                  <!--display the likes of this post, if the user is logged in, then show the link to toggle likes, else, just show the count -->
              <br>
@@ -17,10 +18,10 @@
             <small>
                 <% if (locals.user){ %>
                     <a class="toggle-like-button" data-likes="<%= post.likes.length %>" href="/likes/toggle/?id=<%=post._id%>&type=Post">
-                            <%= post.likes.length %> Likes
+                            <%= post.likes.length %><i class="fa-solid fa-thumbs-up"></i>
                     </a>
                 <% }else{ %>
-                    <%= post.likes.length %> Likes
+                    <%= post.likes.length %><i class="fa-solid fa-thumbs-up"></i>
                 <% } %>
             </small>
            

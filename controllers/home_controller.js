@@ -16,6 +16,7 @@ module.exports.home = async function (req, res){
                 path : 'likes'
             }
         })
+        .populate('comments')
         .populate('likes');
 
         

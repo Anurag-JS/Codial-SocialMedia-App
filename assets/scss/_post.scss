@@ -1,3 +1,21 @@
-.post-comments-list{
-    border : 1px solid black;
+.post-box{
+    border: 3px solid rgb(26, 6, 114);
+    margin-bottom: 4px;
+    background-color: rgb(12, 118, 205);
+
+    .post-content{
+        font-weight: bolder;
+    }
+    .username{
+        color: rgb(0, 254, 55);
+    }
+
+    .post-comments{
+        border: 1px dashed black;
+    }
+
+    .post-comments-list{
+        background-color: aquamarine;
+    }
+    
 }

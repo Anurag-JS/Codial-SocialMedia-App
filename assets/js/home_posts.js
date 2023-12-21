@@ -39,7 +39,7 @@
         return $(`<div id="post-${ post._id }">
         <p>
                   <small>
-                      <a class="delete-post-button" href="/posts/destroy/${ post._id }">X</a>
+                      <a class="delete-post-button" href="/posts/destroy/${ post._id }"><i class="fa-solid fa-trash"></a>
                   </small> 
             <li>${ post.content }</li>
             <small>${ post.user.name }</small>

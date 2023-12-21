@@ -1,2 +1,12 @@
-.post-comments-list {
-  border: 1px solid black; }
+.post-box {
+  border: 3px solid #1a0672;
+  margin-bottom: 4px;
+  background-color: #0c76cd; }
+  .post-box .post-content {
+    font-weight: bolder; }
+  .post-box .username {
+    color: #00fe37; }
+  .post-box .post-comments {
+    border: 1px dashed black; }
+  .post-box .post-comments-list {
+    background-color: aquamarine; }
