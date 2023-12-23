@@ -1,4 +1,5 @@
 const express = require('express');
+const env = require('./config/environment');
 const port = 8000;
 const app = express(); 
 const cookieParser = require('cookie-parser');
@@ -12,6 +13,8 @@ const MongoStore = require('connect-mongo');
 const sassMiddleware = require('node-sass-middleware');
 const flash = require('connect-flash');
 const customMiddleware = require('./config/middleware');
+const path = require('path');
+
 
 // Setup the chat server to be used with socket.io
 const chatServer = require('http').Server(app);
@@ -21,8 +24,8 @@ console.log('Chat server is listening on port 5000');
 
 //setting sassMiddleware
 app.use(sassMiddleware({
-    src: './assets/scss',
-    dest: './assets/css',
+    src: path.join(__dirname, env.asset_path,'scss'),
+    dest:path.join(__dirname, env.asset_path,'css'),
     prefix: '/css',
     debug: true,
     outputStyle: 'extended'
@@ -34,7 +37,7 @@ app.use(express.urlencoded());
 app.use(cookieParser());
 
 // Using the Static files (assets)
-app.use(express.static('./assets'));
+app.use(express.static(env.asset_path));
 
 // Setting up layouts before rendering to routers
 app.use(expressLayouts);
@@ -51,7 +54,7 @@ app.set('views', './views');
 app.use(
     session({
       name: 'codial',
-      secret: 'blahsomething',
+      secret: env.session_cookie_key,
       saveUninitialized: false,
       resave: false,
       cookie: {
